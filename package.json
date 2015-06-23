@@ -9,7 +9,8 @@
   "author": "Team Lovelace",
   "license": "MIT",
   "dependencies": {
-    "async": "^1.0.0"
+    "async": "^1.0.0",
+    "mongoose": "^4.0.6"
   },
   "devDependencies": {
     "grunt": "^0.4.5",

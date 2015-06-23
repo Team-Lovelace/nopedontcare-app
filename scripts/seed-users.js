@@ -7,6 +7,7 @@ var User = require('../lib/users.js');
 
 var createUserOne = function(done){
   User.create({
+    userName: 'courtney',
     name: 'courtney',
     email: 'courtneys@gmail.com',
     bio: 'I like going to the pool and chocolate milk',

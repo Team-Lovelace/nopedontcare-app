@@ -23,24 +23,34 @@ async.series([
         function(error, user) {
           //If user.posts is falsy
           //Create an array for user posts
-          console.log(user);
           if (error) {
             console.error(error);
-          } else
+          }
           if (!user.posts) {
-            console.log('adding empty array');
             user.posts = [];
           }
-          debugger;
-          console.log(user.posts);
-          user.posts.push({
+          post = new Post({
+            author: user._id,
             pictures: 'http://i.imgur.com/ufx7hP0.jpg',
             pubDate: '150623',
             caption: 'Worst day ever.',
             haters: ['832fysz']
           });
-          user.save(done);
+
+          post.save(function(err){
+            if(err){
+              console.error(err);
+            }
+            user.posts.push(post._id);
+            user.save(function(err){
+              if(err){
+                console.error(err);
+              }
+              done();
+            });
+          });
         });
+
     }
   ],
 

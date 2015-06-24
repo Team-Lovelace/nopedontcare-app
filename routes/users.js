@@ -17,8 +17,8 @@ router.get('/:userName', function(req, res) {
   });
 });
 
-router.put('/:userName', jsonParser);
-router.put('/:userName', function(req, res) {
+router.patch('/:userName', jsonParser);
+router.patch('/:userName', function(req, res) {
   //using findOne/.save method so that it doesn't bypass validation
   User.findOne({
     userName: req.params.userName

@@ -1,21 +1,21 @@
 ##Routes
 
-POST - /users  
-GET/PUT/DEL - /users/:id  
-POST/GET/ - /users/:user_id/posts  
-GET/PUT/DEL - /users/:user_id/posts/:id  
-GET/POST - /users/:user_id/posts/:id/comments  
-PUT/DEL - /users/:user_id/posts/:post_id/comments/:id
+POST - /register
+GET/PUT/DEL - /user/:username
+POST/GET/ - /user/:username/nopes
+GET/PUT/DEL - /user/:username/nopes/:id
+GET/POST - /user/:username/nopes/:id/comments
+PUT/DEL - /user/:username/nopes/:post_id/comments/:id
 
 
 ##Schemas
 
 1. Post Schema
-  * pictures: string, req  
-  * publication Date: string, req  
-  * caption: string  
-  * comments: [comment schema]  
-  * haters: [user_ids]  
+  * pictures: string, req
+  * publication Date: string, req
+  * caption: string
+  * comments: [comment schema]
+  * haters: [user_ids]
 2. User Schema
   * username: string, req
   * name: string, req

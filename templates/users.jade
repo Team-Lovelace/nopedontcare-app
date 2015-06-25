@@ -1,0 +1,17 @@
+extend layout
+block main
+  h1 Users
+  .users
+    for user in users
+      h3 Username: #{user.userName}
+      h3 Name: #{user.name}
+      h3 Email: #{user.email}
+      h3 bio: #{user.bio}
+      h3 picture: #{user.profilePic}
+      if (user.posts.length > 0)
+        h3 posts:
+        for post in user.posts
+          img(src=post.pictures)
+          p #{post.pubDate}
+          p #{post.caption}
+  include user-form.jade

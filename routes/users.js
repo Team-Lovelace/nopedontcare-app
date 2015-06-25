@@ -48,7 +48,16 @@ router.patch('/:userName', function(req, res) {
 });
 
 router.delete('/:userName', function(req, res) {
-  console.log("We deleted it");
+  User.remove({
+    userName: req.params.userName
+  }, function(error){
+    if(error){
+      console.log(error);
+      res.sendstatus(400);
+    }else{
+      res.sendStatus(204);
+    }
+  });
 });
 
 

@@ -61,8 +61,9 @@ app.get('/whitenoise', function(req, res) {
 });
 
 
-app.post('/users', jsonParser);
-app.post('/users', function(req, res) {
+
+app.post('/register', jsonParser);
+app.post('/register', function(req, res) {
   User.create(req.body, function(error, user) {
     if (error) {
       console.log(error);

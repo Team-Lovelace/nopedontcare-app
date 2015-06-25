@@ -17,6 +17,7 @@ app.set('views', './templates');
 
 var comments = require('./routes/comments.js');
 var users = require('./routes/users.js');
+var posts = require('./routes/posts.js');
 
 
 /* USERS ROUTE FOR DEV PURPOSES ONLY */
@@ -95,6 +96,7 @@ app.use(express.static(__dirname + '/public'));
 // mount the apiRouter onto our instance of express
 app.use('/user/', comments);
 app.use('/user/', users);
+app.use('/user/', posts);
 
 //app variable is used to listen but not as variable
 var server = app.listen(3000, function() {

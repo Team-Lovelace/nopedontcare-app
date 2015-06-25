@@ -10,8 +10,8 @@ router.get('/', function(req, res) {
 
 router.get('/:userName', function(req, res) {
   console.log("We got a username");
-  User.find({
-    userName: req.params.username
+  User.findOne({
+    userName: req.params.userName
   }, function(error, user) {
     res.json(user);
   });
@@ -21,18 +21,21 @@ router.patch('/:userName', jsonParser);
 router.patch('/:userName', function(req, res) {
   //using findOne/.save method so that it doesn't bypass validation
   User.findOne({
-    userName: req.params.userName
+    name: req.params.userName
     //re.body is the json that comes in
-  }, req.body, function(error, user) {
+  }, function(error, user) {
     if (error) {
       console.log(error);
       res.sendStatus(400);
     } else {
+      console.log(user);
+      console.log(req.body);
       user.userName = req.body.userName || user.userName;
       user.name = req.body.name || user.name;
       user.email = req.body.email || user.email;
       user.bio = req.body.bio || user.bio;
       user.profilePic = req.body.profilePic || user.profilePic;
+      user.posts = req.body.posts || user.posts;
       user.save(function(error) {
         if (error) {
           console.log(error);

@@ -1,10 +1,22 @@
 var mongoose = require('mongoose');
+var MongoURI = 'mongodb://localhost/nope';
 mongoose.connect('mongodb://localhost/nope');
 
 var express = require('express');
 var bodyParser = require('body-parser');
 var jsonParser = bodyParser.json();
 var app = express();
+var cookieParser = require('cookie-parser');
+
+// Auth dependencies
+var session = require('express-session');
+var MongoStore = require('connect-mongo')(session);
+var mongoose = require('mongoose');
+var passport = require('passport');
+var FacebookStrategy = require('passport-facebook').Strategy;
+var TwitterStrategy = require('passport-twitter').Strategy;
+var findOrCreateProfile = require('./findOrCreateProfile');
+var auth = require('./routes/auth.js');
 
 var jade = require('jade');
 var fs = require('fs');
@@ -93,10 +105,46 @@ app.use(express.static(__dirname + '/public'));
 
 /* END USERS ROUTE */
 
+app.use(cookieParser());
+app.use(session({
+  store: new MongoStore({url: MongoURI}),
+  secret: 'learn node',
+  resave: true,
+  saveUninitialized: false
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(User.createStrategy());
+
+passport.use(new TwitterStrategy({
+  consumerKey: '...',
+  consumerSecret: '...',
+  callbackURL: "http://localhost:3000/auth/twitter/callback"
+},
+function(token, tokenSecret, profile, done){
+  findOrCreateProfile({twitterId: profile.id}, profile, done);
+}
+));
+
+passport.use(new FacebookStrategy({
+  clientID: '1069353713094731',
+  clientSecret: '7d7ea0bc01204e0248f81fd179a9c90e',
+  callbackURL: "http://localhost:3000/auth/facebook/callback"
+},
+function(accessToken, refreshToken, profile, done){
+  findOrCreateProfile({facebookID: profile.id}, profile, done);
+}));
+
+
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser);
+
 // mount the apiRouter onto our instance of express
 app.use('/user/', comments);
 app.use('/user/', users);
 app.use('/user/', posts);
+app.use('/auth/', auth);
 
 //app variable is used to listen but not as variable
 var server = app.listen(3000, function() {

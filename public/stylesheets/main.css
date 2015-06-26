@@ -31,18 +31,6 @@ button {
   text-align: center;
   height: 400px; }
 
-.awesome-background {
-  position: relative; }
-
-.awesome-background:before {
-  position: absolute;
-  font-family: 'FontAwesome';
-  content: "\f08a";
-  font-size: 150px;
-  padding: 0px;
-  margin: 0px;
-  text-align: center; }
-
 /*Colors as variables*/
 /*Colors as classes*/
 .backgroundPrimary-color {
@@ -602,6 +590,9 @@ h5 {
   .txt-right-lg {
     text-align: right !important; } }
 /*End text sizes at different widths*/
+#modal-button {
+  background-color: #00CFCF !important; }
+
 .floatLeft {
   float: left; }
 

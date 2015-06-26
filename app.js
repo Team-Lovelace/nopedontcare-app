@@ -35,7 +35,10 @@ app.get('/', function(req, res) {
   res.render('home')
 });
 
-
+/*ROUTE TO RENDER HOME PAGE*/
+app.get('/modal', function(req, res) {
+  res.render('modal-form')
+});
 
 app.post('/users', jsonParser);
 app.post('/users', function(req, res) {

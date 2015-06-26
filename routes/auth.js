@@ -13,18 +13,14 @@ router.get('/', function(req, res, next) {
 });
 
 
-router.get('/facebook', passport.authenticate('facebook', {
-  scope: ['user_status']
-}));
+router.get('/facebook', passport.authenticate('facebook'));
 
 router.get('/facebook/callback', passport.authenticate('facebook', {
   successRedirect: '/contacts',
   failureRedirect: '/auth'
 }));
 
-router.get('/twitter', passport.authenticate('twitter', {
-  scope: ['user_status']
-}));
+router.get('/twitter', passport.authenticate('twitter'));
 
 router.get('/twitter/callback', passport.authenticate('twitter', {
   successRedirect: '/contacts',

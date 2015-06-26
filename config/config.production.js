@@ -19,17 +19,17 @@ config.mongo.dbUrl = "mongodb://nopeapp:noireallydontcare@ds041841.mongolab.com:
 
 // make sure we can fetch our secrets from the environment
 
-var missingSecrets = [];
-config.secretNames.forEach(function(name) {
-  if (process.env[name] !== undefined) {
-    config.secrets[name] = process.env[name];
-  } else {
-    missingSecrets.push(name);
-  }
-});
+// var missingSecrets = [];
+// config.secretNames.forEach(function(name) {
+//   if (process.env[name] !== undefined) {
+//     config.secrets[name] = process.env[name];
+//   } else {
+//     missingSecrets.push(name);
+//   }
+// });
 
-if (missingSecrets.length > 0) {
-  throw new Error('Cannot start server without secrets: ' + missingSecrets.join(', '));
-}
+// if (missingSecrets.length > 0) {
+//   throw new Error('Cannot start server without secrets: ' + missingSecrets.join(', '));
+// }
 
 module.exports = config;

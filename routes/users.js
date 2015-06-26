@@ -53,7 +53,7 @@ router.delete('/:userName', function(req, res) {
   }, function(error){
     if(error){
       console.log(error);
-      res.sendstatus(400);
+      res.sendStatus(400);
     }else{
       res.sendStatus(204);
     }

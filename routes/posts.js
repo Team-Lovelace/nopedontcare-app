@@ -49,17 +49,27 @@ router.post('/:username/nopes', function(req, res){
 });
 
 router.delete('/:username/nopes/:id', function(req, res){
-  Post.remove({
-    _id: req.params.id
-  }, function(error){
-    if(error){
+  User.findOne({userName: req.params.username}, function(error, user){
+    if (error){
       console.error(error);
-      res.sendStatus(400);
-    }else{
-      res.sendStatus(204);
-      console.log('deleted nope!');
     }
-  });
+    user.posts.splice(user.posts.indexOf(req.params.id), 1);
+    user.save();
+    Post.remove({
+    _id: req.params.id
+    },
+    function(error){
+      if(error){
+        console.error(error);
+        res.sendStatus(400);
+      }else{
+        res.sendStatus(204);
+        console.log('deleted nope!');
+      }
+    });
+
+  })
+
 });
 
 module.exports = router;

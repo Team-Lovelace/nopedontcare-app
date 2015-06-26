@@ -1,0 +1,34 @@
+/*CSS for Home*/
+/*ToDo: Add Sass and then modularize to have a home.scss etc*/
+.home-hero {
+  height: 430px;
+  padding-top: 90px;
+  text-align: center;
+}
+
+button {
+  border: none;
+  border-radius: 3px;
+  padding: 6px 12px;
+  margin: 30px;
+}
+
+.home-about {
+  text-align: center;
+  height: 400px;
+}
+
+//To Do: make a heart background image that is centered
+.awesome-background {
+  position: relative;
+}
+
+.awesome-background:before {
+  position: absolute;
+  font-family: 'FontAwesome';
+  content: "\f08a";
+  font-size: 150px;
+  padding: 0px;
+  margin: 0px;
+  text-align: center;
+}

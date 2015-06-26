@@ -1,0 +1,7 @@
+{
+  "dev": {
+    "files": {
+      "public/stylesheets/main.css": "public/stylesheets/sass/base.scss"
+    }
+  }
+}

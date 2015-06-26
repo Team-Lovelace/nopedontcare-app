@@ -1,0 +1,26 @@
+@import 'bootstrap.min.css';
+@import 'bootstrap-theme.css';
+@import url("http://fonts.googleapis.com/css?family=Open+Sans");
+@import 'navigation';
+@import 'home';
+@import 'colors';
+@import 'padding';
+@import 'margin';
+@import 'headers';
+@import 'textSize';
+
+
+.floatLeft {
+  float: left;
+}
+.clear-fix {
+  clear: both;
+}
+/*! normalize.css v3.0.1 | MIT License | git.io/normalize */
+
+html,
+body {
+  width: auto !important;
+  overflow-x: hidden !important;
+  font-family: Avenir !important;
+}

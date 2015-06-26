@@ -1,6 +1,7 @@
+var config = require('./config');
 var mongoose = require('mongoose');
-var MongoURI = 'mongodb://localhost/nope';
-mongoose.connect('mongodb://localhost/nope');
+var MongoURI = config.mongo.dbUrl;
+mongoose.connect(MongoURI);
 
 var express = require('express');
 var bodyParser = require('body-parser');
@@ -33,7 +34,8 @@ var posts = require('./routes/posts.js');
 
 
 /* USERS ROUTE FOR DEV PURPOSES ONLY */
-app.get('/users', function(req, res) {
+if (config.env === 'dev') {
+  app.get('/users', function(req, res) {
   User.find({})
     .populate('posts')
     .exec(function(error, userList) {
@@ -94,15 +96,7 @@ app.post('/register', function(req, res) {
     };
   });
 });
-
-//using an express method, static
-//that creates middlewear that serves up static files
-//along with our html
-//references the public folder
-//returns static files back to browser
-app.use(express.static(__dirname + '/public'));
-
-
+}
 /* END USERS ROUTE */
 
 app.use(cookieParser());

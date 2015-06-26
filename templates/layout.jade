@@ -19,6 +19,9 @@ html
         ul.nav.navbar-nav.navbar-right
           li
             a(href="#")
+              i#modal-button.fa.fa-camera-retro.fa-2x.faa-tada.animated-hover(type="button" data-toggle="modal" data-target="#myPostModal")
+          li
+            a(href="#")
               i.fa.fa-frown-o.fa-2x.faa-tada.animated-hover
           li
             a(href="#")
@@ -27,6 +30,7 @@ html
             a(href="#")
               i.fa.fa-user.fa-2x.faa-tada.animated-hover
     block main
+    include modal-form-posts
     script(type="text/javascript", src="js/jquery-min.js")
     script(src="js/bootstrap.min.js")
 

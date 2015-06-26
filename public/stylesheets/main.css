@@ -590,8 +590,8 @@ h5 {
   .txt-right-lg {
     text-align: right !important; } }
 /*End text sizes at different widths*/
-#modal-button {
-  background-color: #00CFCF !important; }
+.user-profile-container {
+  height: 1000px; }
 
 .floatLeft {
   float: left; }

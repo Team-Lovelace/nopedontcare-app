@@ -35,9 +35,14 @@ app.get('/', function(req, res) {
   res.render('home')
 });
 
-/*ROUTE TO RENDER HOME PAGE*/
+/*FOR TESTING: ROUTE TO RENDER MODAL*/
 app.get('/modal', function(req, res) {
   res.render('modal-form')
+});
+
+/*FOR TESTING: ROUTE TO RENDER USER PROFILE*/
+app.get('/userprofile', function(req, res) {
+  res.render('user-profile')
 });
 
 app.post('/users', jsonParser);

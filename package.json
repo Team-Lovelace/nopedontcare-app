@@ -4,6 +4,7 @@
   "description": "Nope, Don't Care",
   "main": "app.js",
   "scripts": {
+    "start": "node app.js",
     "test": "grunt jasmine-nodejs"
   },
   "author": "Team Lovelace",

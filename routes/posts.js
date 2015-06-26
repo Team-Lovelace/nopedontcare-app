@@ -72,4 +72,25 @@ router.delete('/:username/nopes/:id', function(req, res){
 
 });
 
+router.patch('/:username/nopes/:id', jsonParser);
+router.patch('/:username/nopes/:id', function(req, res){
+  Post.findOne({_id: req.params.id}, function(error, post){
+    if (error){
+      console.error(error);
+      res.sendStatus (400);
+    } else {
+      console.log(post);
+      console.log(req.body);
+      post.caption = req.body.caption;
+      post.save(function(error){
+        if (error){
+          console.log(error);
+          res.sendStatus(400);
+        }
+        res.sendStatus(200);
+      });
+    }
+  });
+});
+
 module.exports = router;

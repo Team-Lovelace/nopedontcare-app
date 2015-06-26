@@ -14,7 +14,7 @@ router.get('/', function(req, res, next) {
 
 
 router.get('/facebook', passport.authenticate('facebook', {
-  scope: ['user_status', 'user_checkins']
+  scope: ['user_status']
 }));
 
 router.get('/facebook/callback', passport.authenticate('facebook', {
@@ -23,7 +23,7 @@ router.get('/facebook/callback', passport.authenticate('facebook', {
 }));
 
 router.get('/twitter', passport.authenticate('twitter', {
-  scope: ['user_status', 'user_checkins']
+  scope: ['user_status']
 }));
 
 router.get('/twitter/callback', passport.authenticate('twitter', {

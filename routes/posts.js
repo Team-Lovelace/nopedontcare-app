@@ -15,6 +15,15 @@ router.get('/:username/nopes', function(req, res){
   });
 });
 
+router.get('/:username/nopes/:id', function(req, res){
+  Post.find({_id: req.params.id})
+  .populate('userName', 'post')
+  .exec(function(error, post){
+    console.log(post);
+    res.json(post);
+  });
+});
+
 router.post('/:username/nopes', jsonParser);
 router.post('/:username/nopes', function(req, res){
   User.findOne({userName: req.params.username}, function(error, user){
@@ -36,6 +45,20 @@ router.post('/:username/nopes', function(req, res){
         res.json(post);
         });
      });
+  });
+});
+
+router.delete('/:username/nopes/:id', function(req, res){
+  Post.remove({
+    _id: req.params.id
+  }, function(error){
+    if(error){
+      console.error(error);
+      res.sendStatus(400);
+    }else{
+      res.sendStatus(204);
+      console.log('deleted nope!');
+    }
   });
 });
 

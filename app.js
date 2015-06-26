@@ -141,7 +141,7 @@ app.use('/user/', posts);
 app.use('/auth/', auth);
 
 //app variable is used to listen but not as variable
-var server = app.listen(3000, function() {
+var server = app.listen(config.serverPort, function() {
 
   var host = server.address().address;
   var port = server.address().port;

@@ -1,0 +1,10 @@
+extends layout
+block main
+  .row
+    .user-profile-container.textPrimary-white.backgroundPrimary-color.col-xs-12
+      div#user-feed-text-carousel.textPrimary-white.col-xs-11.col-xs-offset-1.col-sm-8.col-sm-offset-2
+          #user-feed-frown.fa.fa-frown-o.fa-4x.col-xs-12.col-sm-2.paddingBottom-lg
+          h3.col-xs-12.col-sm-10 we don't really want to see your engagement photos in an italian villa.
+      .user-profile-posts.textPrimary-white.col-xs-10.col-xs-offset-2.col-sm-8.col-sm-offset-2
+        //- This is where the user posts will populate
+    include modal-form-update-user-profile

@@ -1,6 +1,6 @@
 @import url(bootstrap.min.css);
 @import url(bootstrap-theme.css);
-@import url("http://fonts.googleapis.com/css?family=Open+Sans");
+@import url("http://fonts.googleapis.com/css?family=Lato:400,700");
 nav {
   position: fixed !important;
   top: 0px;
@@ -493,15 +493,15 @@ h5 {
 @media (min-width: 768px) {
   .txtSm {
     font-size: 14px !important;
-    line-height: 17px !important; } }
+    line-height: 14px !important; } }
 @media (min-width: 992px) {
   .txtSm {
     font-size: 17px !important;
-    line-height: 20px !important; } }
+    line-height: 17px !important; } }
 @media (min-width: 1200px) {
   .txtSm {
     font-size: 20px !important;
-    line-height: 23px !important; } }
+    line-height: 17px !important; } }
 .txtMd {
   font-weight: 400;
   font-size: 18px !important;
@@ -590,6 +590,12 @@ h5 {
   .txt-right-lg {
     text-align: right !important; } }
 /*End text sizes at different widths*/
+.form-input {
+  margin-bottom: 10px; }
+
+.modalButton {
+  background-color: #00CFCF; }
+
 .user-profile-container {
   height: 1000px; }
 
@@ -612,6 +618,24 @@ h5 {
   background-color: transparent;
   border: 2px solid white; }
 
+#user-feed-text-carousel {
+  margin-top: 100px; }
+
+#user-feed-frown {
+  text-align: center; }
+
+.hall-of-fame-main {
+  margin-top: 100px; }
+
+.hall-of-fame-col-2 {
+  text-align: center; }
+
+.hall-of-fame-col-1 {
+  text-align: center; }
+
+#whitenoise {
+  margin-top: 200px; }
+
 .floatLeft {
   float: left; }
 
@@ -623,6 +647,6 @@ html,
 body {
   width: auto !important;
   overflow-x: hidden !important;
-  font-family: Avenir !important; }
+  font-family: 'Lato', sans-serif !important; }
 
 /*# sourceMappingURL=main.css.map */

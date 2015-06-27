@@ -6,8 +6,12 @@
       .modal-content
         .modal-header
           button.close(type="button" data-dismiss="modal") &times;
-          h4.modal-title Modal Header
+          h4.modal-title update user profile
         .modal-body
-          p Some text in the modal
+          input#name.form-input.form-control.input-lg(required data-parsley-minlength="2" data-parsley-trigger="focusout" type="text" placeholder="name")
+          input#email.form-input.form-control.input-lg(required data-parsley-minlength="2" data-parsley-trigger="focusout" type="text" placeholder="email")
+          input#username.form-input.form-control.input-lg(required data-parsley-minlength="2" data-parsley-trigger="focusout" type="text" placeholder="username")
+          input#phonenumber.form-input.form-control.input-lg(required data-parsley-minlength="2" data-parsley-trigger="focusout" type="text" placeholder="phone number")
+          input#bio.form-input.form-control.input-lg(required data-parsley-minlength="2" data-parsley-trigger="focusout" type="text" placeholder="bio")
         .modal-footer
-          button.btn.btn-default(type="button" data-dismiss="modal") Close
+          button.btn-lg.modalButton.textPrimary-white(type="button" data-dismiss="modal") update profile

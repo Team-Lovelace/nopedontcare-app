@@ -45,6 +45,21 @@ app.get('/userprofile', function(req, res) {
   res.render('user-profile')
 });
 
+/*FOR TESTING: ROUTE TO RENDER USER FEED*/
+app.get('/userfeed', function(req, res) {
+  res.render('user-feed')
+});
+
+/*FOR TESTING: ROUTE TO RENDER HALL OF FAME*/
+app.get('/halloffame', function(req, res) {
+  res.render('hall-of-fame')
+});
+
+/*FOR TESTING: ROUTE TO RENDER WHITE NOISE FEED*/
+app.get('/whitenoise', function(req, res) {
+  res.render('white-noise-feed')
+});
+
 app.post('/users', jsonParser);
 app.post('/users', function(req, res) {
   User.create(req.body, function(error, user) {

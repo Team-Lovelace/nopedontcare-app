@@ -1,3 +1,29 @@
 .user-profile-container {
   height: 1000px;
 }
+.user-profile-information {
+  margin-top: 100px;
+}
+
+.profilePic {
+  text-align: center;
+}
+
+#profileBackground {
+  width: 150px;
+  height: 100px;
+  text-align: center;
+}
+
+// This padding is not working for the list under username
+.userText {
+  padding-left: 0px !important;
+}
+
+#editUserButton {
+  margin: 0px !important;
+  background-color: transparent;
+  border: 2px solid white;
+}
+
+

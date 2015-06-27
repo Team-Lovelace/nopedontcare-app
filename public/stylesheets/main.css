@@ -29,7 +29,7 @@ button {
 
 .home-about {
   text-align: center;
-  height: 400px; }
+  height: 300px; }
 
 /*Colors as variables*/
 /*Colors as classes*/
@@ -596,8 +596,11 @@ h5 {
 .modalButton {
   background-color: #00CFCF; }
 
+.uploadButton {
+  color: black; }
+
 .user-profile-container {
-  height: 1000px; }
+  height: 800px; }
 
 .user-profile-information {
   margin-top: 100px; }

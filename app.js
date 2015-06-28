@@ -17,6 +17,7 @@ app.set('views', './templates');
 
 var comments = require('./routes/comments.js');
 var users = require('./routes/users.js');
+var posts = require('./routes/posts.js');
 
 
 /* USERS ROUTE FOR DEV PURPOSES ONLY */
@@ -61,8 +62,9 @@ app.get('/whitenoise', function(req, res) {
 });
 
 
-app.post('/users', jsonParser);
-app.post('/users', function(req, res) {
+
+app.post('/register', jsonParser);
+app.post('/register', function(req, res) {
   User.create(req.body, function(error, user) {
     if (error) {
       console.log(error);
@@ -94,6 +96,7 @@ app.use(express.static(__dirname + '/public'));
 // mount the apiRouter onto our instance of express
 app.use('/user/', comments);
 app.use('/user/', users);
+app.use('/user/', posts);
 
 //app variable is used to listen but not as variable
 var server = app.listen(3000, function() {

@@ -89,7 +89,25 @@ router.patch('/:username/nopes/:post_id/comments/:id', function(req, res) {
 });
 
 router.delete('/:username/nopes/:post_id/comments/:id', function(req, res) {
-  console.log("We deleted it");
+  Post.findOne({_id: req.params.post_id}, function(error, post){
+    if (error){
+      console.error(error);
+    }
+    post.comments.splice(post.comments.indexOf(req.params.id), 1);
+    post.save();
+    Comment.remove({
+      _id:req.params.id
+    }, function(error){
+      if (error){
+        console.error(error);
+        res.sendStatus(400);
+      }else{
+        res.sendStatus(204);
+        console.log('deleted comment!');
+      }
+    });
+
+  })
 });
 
 

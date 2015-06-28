@@ -56,6 +56,7 @@ router.post('/:username/nopes/:id/comments', function(req, res) {
         post.save(function(error){
           if (error){
             console.error(error);
+            res.sendStatus (400);
           }
           res.json(comment);
         });
@@ -65,8 +66,26 @@ router.post('/:username/nopes/:id/comments', function(req, res) {
     console.log("We posted it");
 });
 
-router.put('/:username/nopes/:post_id/comments/:id', function(req, res) {
-  console.log("We put it");
+router.patch('/:username/nopes/:post_id/comments/:id', jsonParser);
+router.patch('/:username/nopes/:post_id/comments/:id', function(req, res) {
+  Comment.findOne({_id: req.params.id}, function(error, comment){
+    if (error){
+      console.error(error);
+      res.sendStatus (400);
+    } else {
+      console.log(comment);
+      console.log(req.body);
+      comment.body = req.body.body;
+      comment.save(function(error){
+        if (error){
+          console.log(error);
+          res.sendStatus(400);
+        }
+        res.sendStatus(200);
+      });
+    }
+  });
+  console.log("We patch it");
 });
 
 router.delete('/:username/nopes/:post_id/comments/:id', function(req, res) {

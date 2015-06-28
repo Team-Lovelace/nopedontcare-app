@@ -18,18 +18,48 @@ app.set('views', './templates');
 var comments = require('./routes/comments.js');
 var users = require('./routes/users.js');
 
-app.get('/', function(req, res){
-  res.render('index', {name: 'users', message: 'here are the nope users!'});
-});
 
 /* USERS ROUTE FOR DEV PURPOSES ONLY */
 app.get('/users', function(req, res) {
   User.find({})
-  .populate('posts')
-  .exec(function(error, userList) {
-    res.render( 'users', {users: userList});
-  });
+    .populate('posts')
+    .exec(function(error, userList) {
+      res.render('users', {
+        users: userList
+      });
+    });
 });
+
+/*ROUTE TO RENDER HOME PAGE*/
+app.get('/', function(req, res) {
+  res.render('home')
+});
+
+/*FOR TESTING: ROUTE TO RENDER MODAL*/
+app.get('/modal', function(req, res) {
+  res.render('modal-form')
+});
+
+/*FOR TESTING: ROUTE TO RENDER USER PROFILE*/
+app.get('/userprofile', function(req, res) {
+  res.render('user-profile')
+});
+
+/*FOR TESTING: ROUTE TO RENDER USER FEED*/
+app.get('/userfeed', function(req, res) {
+  res.render('user-feed')
+});
+
+/*FOR TESTING: ROUTE TO RENDER HALL OF FAME*/
+app.get('/halloffame', function(req, res) {
+  res.render('hall-of-fame')
+});
+
+/*FOR TESTING: ROUTE TO RENDER WHITE NOISE FEED*/
+app.get('/whitenoise', function(req, res) {
+  res.render('white-noise-feed')
+});
+
 
 app.post('/users', jsonParser);
 app.post('/users', function(req, res) {
@@ -38,8 +68,8 @@ app.post('/users', function(req, res) {
       console.log(error);
       res.sendStatus(400);
     } else {
-      fs.readFile('./templates/user.jade', 'utf8', function (err, data) {
-        if (err){
+      fs.readFile('./templates/user.jade', 'utf8', function(err, data) {
+        if (err) {
           res.sendStatus(400);
         };
         var userCompiler = jade.compile(data);
@@ -50,6 +80,14 @@ app.post('/users', function(req, res) {
     };
   });
 });
+
+//using an express method, static
+//that creates middlewear that serves up static files
+//along with our html
+//references the public folder
+//returns static files back to browser
+app.use(express.static(__dirname + '/public'));
+
 
 /* END USERS ROUTE */
 

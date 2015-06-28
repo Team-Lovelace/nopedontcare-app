@@ -1,0 +1,30 @@
+extends layout
+block main
+  .row
+    .user-profile-container.backgroundPrimary-color.col-xs-12
+      .user-profile-information.col-xs-10.col-xs-offset-2.col-sm-8.col-sm-offset-2.paddingBottom-xl
+          .profilePic.col-xs-12.col-sm-3.paddingBottom-lg
+            div#profileBackground.backgroundPrimary-white
+              i.fa.fa-frown-o.fa-4x.textPrimary-black.paddingTop-lg
+          .col-xs-12.col-sm-6.paddingBottom-lg
+            .col-xs-12.paddingBottom-lg.textPrimary-white
+              h4 Username
+            .col-xs-12.textPrimary-white
+              .userText.col-xs-12.col-sm-4
+                p 13 Followers
+              .userText.col-xs-12.col-sm-4
+                p 21 Posts
+              .userText.col-xs-12.col-sm-4
+                p 45 Following
+          .col-xs-12.col-sm-3
+            button#editUserButton.textPrimary-white(type="button" data-toggle="modal" data-target="#myUserModal") Edit User Info
+      .user-profile-text-carousel.textPrimary-white.col-xs-10.col-xs-offset-2.col-sm-8.col-sm-offset-2.marginBottom-xl
+          h3 Here are your photos. Just no babies, ok?
+      .user-profile-posts.col-xs-12.col-sm-8.col-sm-offset-2
+        .user-profile-posts-col-1.col-xs-12.col-sm-6.pull-left.marginBottom-xl
+          include posts-template
+        .user-profile-posts-col-2.col-xs-12.col-sm-6.pull-right.marginBottom-xl
+          include posts-template
+        //- This is where the user posts will populate
+      div.space.col-xs-12.backgroundPrimary-color.paddingVertical-xl
+    include modal-form-update-user-profile

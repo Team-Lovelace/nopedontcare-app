@@ -1,0 +1,24 @@
+extends layout
+block main
+  .row
+    .user-profile-container.textPrimary-white.backgroundPrimary-color.col-xs-12
+      .hall-of-fame-main.col-xs-12
+        .hall-of-fame-col-1.col-xs-12.col-sm-6.paddingBottom-xl
+          div#hall-of-fame-text-vexatious.textPrimary-white.col-xs-11.col-xs-offset-1.col-sm-8.col-sm-offset-2
+            #hall-of-fame-trophy.fa.fa-trophy.fa-3x.col-xs-12.col-sm-2.paddingBottom-lg
+            div.col-xs-12.col-sm-10.marginBottom-xl
+              h3 most vexatious posts
+            div#most-vexatious-posts
+          .user-profile-posts-col-1.col-xs-12.pull-left
+            include posts-template
+        .hall-of-fame-col-2.col-xs-12.col-sm-6.paddingBottom-xl
+          div#hall-of-fame-text-flagged.textPrimary-white.col-xs-11.col-xs-offset-1.col-sm-8.col-sm-offset-2
+            #hall-of-fame-flag.fa.fa-flag-o.fa-3x.col-xs-12.col-sm-2.paddingBottom-lg
+            div.col-xs-12.col-sm-10.marginBottom-xl
+              h3 most flagged posts
+            div#most-flagged-posts
+          .user-profile-posts-col-2.col-xs-12.pull-right
+            include posts-template
+        div.space.col-xs-12.backgroundPrimary-color.paddingVertical-xl
+
+

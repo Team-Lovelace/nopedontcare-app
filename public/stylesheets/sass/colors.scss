@@ -1,0 +1,43 @@
+/*Colors as variables*/
+$Primary-color: #5C5C5C;
+$Secondary-color: #00CFCF;
+$Primary-white: #ffffff;
+
+/*Colors as classes*/
+.backgroundPrimary-color {
+  background-color: #5C5C5C;
+}
+.backgroundSecondary-color {
+  background-color: #00CFCF;
+}
+.backgroundPrimary-black {
+  background-color: #000000;
+}
+.backgroundSecondary-black {
+  background-color: #555555;
+}
+.backgroundPrimary-white {
+  background-color: #ffffff;
+}
+.backgroundPrimary-gray {
+  background-color: #f8f8f8;
+}
+.textPrimary-color {
+  color: #8c75af;
+}
+.textSecondary-color {
+  color: #39b4a5;
+}
+.textPrimary-black {
+  color: #000000;
+}
+.textSecondary-black {
+  color: #555555;
+}
+.textPrimary-gray {
+  color: #f8f8f8;
+}
+.textPrimary-white {
+  color: #ffffff;
+}
+/*End Colors*/

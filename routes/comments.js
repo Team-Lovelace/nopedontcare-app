@@ -32,9 +32,37 @@ router.get('/:username/nopes/:id/comments', function(req, res) {
 //     });
 //   })
 // });
-
+router.post('/:username/nopes/:id/comments', jsonParser);
 router.post('/:username/nopes/:id/comments', function(req, res) {
-  console.log("We posted it");
+  Post.findOne({_id: req.params.id}, function(error, post){
+    if (error){
+      console.log(error);
+    }
+    User.findOne({user: req.params.user}, function(error, user){
+      if (error){
+        console.error(error)
+      }
+      comment = new Comment({
+       author:user._id,
+       body:req.body.body,
+       pubDate:req.body.pubDate
+
+      });
+      comment.save(function(error){
+        if (error){
+          console.error(error);
+        }
+        post.comments.push(comment._id);
+        post.save(function(error){
+          if (error){
+            console.error(error);
+          }
+          res.json(comment);
+        });
+      });
+    });
+  });
+    console.log("We posted it");
 });
 
 router.put('/:username/nopes/:post_id/comments/:id', function(req, res) {

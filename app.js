@@ -60,6 +60,7 @@ app.get('/whitenoise', function(req, res) {
   res.render('white-noise-feed')
 });
 
+
 app.post('/users', jsonParser);
 app.post('/users', function(req, res) {
   User.create(req.body, function(error, user) {

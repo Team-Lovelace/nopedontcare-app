@@ -30,6 +30,11 @@ button {
 .home-about {
   text-align: center; }
 
+.home-last {
+  text-align: center; }
+  .home-last a {
+    color: #ffffff; }
+
 /*Colors as variables*/
 /*Colors as classes*/
 .backgroundPrimary-color {
@@ -658,13 +663,39 @@ h5 {
   width: 30px;
   background-color: #ffffff; }
 
+.tooltip {
+  display: none;
+  position: absolute;
+  border: 1px solid #333;
+  background-color: #161616;
+  border-radius: 5px;
+  padding: 10px;
+  color: #fff;
+  font-size: 12px Arial; }
+
+.about-container {
+  padding-top: 100px; }
+
+#nope-button {
+  border-radius: 60px;
+  background-color: transparent;
+  border: 2px solid white; }
+
+#nope-gif {
+  display: none; }
+
 .floatLeft {
   float: left; }
 
 .clear-fix {
   clear: both; }
 
-/*! normalize.css v3.0.1 | MIT License | git.io/normalize */
+/*!Any classes in layout*/
+.learn-more {
+  color: #ffffff;
+  text-align: center;
+  text-decoration: underline; }
+
 html,
 body {
   width: auto !important;

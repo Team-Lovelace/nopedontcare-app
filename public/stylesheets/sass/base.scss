@@ -14,6 +14,8 @@
 @import 'hallOfFame';
 @import 'whiteNoise';
 @import 'postTemplate';
+@import 'hover';
+@import 'about';
 
 
 .floatLeft {
@@ -22,7 +24,14 @@
 .clear-fix {
   clear: both;
 }
-/*! normalize.css v3.0.1 | MIT License | git.io/normalize */
+/*!Any classes in layout*/
+.learn-more {
+  color: #ffffff;
+  text-align: center;
+  text-decoration: underline;
+}
+
+
 
 html,
 body {

@@ -13,33 +13,40 @@ html
           span.icon-bar
           span.icon-bar
           span.icon-bar
-        a.navbar-brand(href="/")
+        a.navbar-brand(href="/" title="Home")
           i.fa.fa-thumbs-o-down.fa-2x.faa-tada.animated-hover
       .collapse.navbar-collapse.navbar-ex1-collapse
         ul.nav.navbar-nav.navbar-right
           li
-            a(href="#")
+            a(href="#" title="Create a new post")
               i#modal-button.fa.fa-camera-retro.fa-2x.faa-tada.animated-hover(type="button" data-toggle="modal" data-target="#myPostModal")
+              h.hidden-sm.hidden-md.hidden-lg.paddingLeft-md Create a new Post
           li
-            a(href="/userfeed")
+            a(href="/userfeed" title="User Feed")
               i.fa.fa-frown-o.fa-2x.faa-tada.animated-hover
+              h.hidden-sm.hidden-md.hidden-lg.paddingLeft-md User Feed
           li
-            a(href="/halloffame")
+            a(href="/halloffame" title="Hall of Fame")
               i.fa.fa-trophy.fa-2x.faa-tada.animated-hover
+              h.hidden-sm.hidden-md.hidden-lg.paddingLeft-md Hall of Fame
           li
-            a(href="/whitenoise")
+            a(href="/whitenoise" title="White Noise Feed")
               i.fa.fa-headphones.fa-2x.faa-tada.animated-hover
+              h.hidden-sm.hidden-md.hidden-lg.paddingLeft-md White Noise Feed
           li
-            a(href="/userprofile")
+            a(href="/userprofile" title="User Profile")
               i.fa.fa-user.fa-2x.faa-tada.animated-hover
+              h.hidden-sm.hidden-md.hidden-lg.paddingLeft-md User Profile
     block main
-
     div.copywright.col-xs-12.backgroundPrimary-black.textPrimary-white
       .col-sm-8.col-sm-offset-2.padding-xxl
         center.txtsm © Copyright 2015 <strong>   Team Lovelace:   </strong> Peter Masucci, Breanne Duffy, Courtney Sadusky
+        a.learn-more.col-xs-12.col-sm-8.col-sm-offset-2(href="/about") Learn More
 
     include modal-form-posts
     script(type="text/javascript", src="/js/jquery-min.js")
-    script(src="/js/bootstrap.min.js")
+    script(src="/js/bootstrap.min.js"))
+    script(src="js/main.js")
+
 
 

@@ -97,6 +97,11 @@ app.get('/whitenoise', function(req, res) {
   res.render('white-noise-feed');
 });
 
+/*FOR TESTING: ROUTE TO RENDER WHITE NOISE FEED*/
+app.get('/about', function(req, res) {
+  res.render('about')
+});
+
 
 
 app.post('/register', jsonParser);

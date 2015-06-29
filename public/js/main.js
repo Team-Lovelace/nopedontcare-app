@@ -29,4 +29,14 @@ $(document).ready(function() {
       })
   });
 
+
+  // $('#nope-button').click(function() {
+  //   $('#nope-gif').show(); // Show the one content you want to display
+  // });
+
+  $('#nope-button').click(function() {
+    $('#nope-gif').show();
+    $('#nope-button').hide();
+  });
+
 }); //End of document ready

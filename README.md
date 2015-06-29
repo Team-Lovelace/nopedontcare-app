@@ -1,11 +1,11 @@
 #ROUTES
 
 POST - /register
-GET/PUT/DEL - /user/:username
+GET/PATCH/DEL - /user/:username
 POST/GET/ - /user/:username/nopes
-GET/PUT/DEL - /user/:username/nopes/:id
+GET/PATCH/DEL - /user/:username/nopes/:id
 GET/POST - /user/:username/nopes/:id/comments
-PUT/DEL - /user/:username/nopes/:post_id/comments/:id
+PATCH/DEL - /user/:username/nopes/:post_id/comments/:id
 
 
 #SCHEMAS

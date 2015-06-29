@@ -4,14 +4,17 @@ var User = require('../lib/users.js');
 var Post = require('../lib/posts.js');
 var bodyParser = require('body-parser');
 var jsonParser = bodyParser.json();
+var fs = require('fs');
+var jade = require('jade');
+var moment = require('moment');
 
 //NEED POSTS TEMPLATE TO VIEW
 router.get('/:username/nopes', function(req, res){
   User.find({userName: req.params.username})
   .populate('posts')
-  .exec(function(error, postList){
-    console.log(postList);
-    res.render('posts', {posts: postList});
+  .exec(function(error, postContainer){
+    console.log(post);
+    res.render('user-feed', {posts: postContainer});
   });
 });
 
@@ -30,8 +33,10 @@ router.post('/:username/nopes', function(req, res){
     if (error){
       console.log(error);
     }
-    post = new Post({
-      author:user._id
+    var post = new Post({
+      author:user._id,
+      caption: req.body.caption,
+      pubDate: moment().format()
     });
     post.save(function(error){
       if (error){
@@ -40,11 +45,20 @@ router.post('/:username/nopes', function(req, res){
       user.posts.push(post._id);
       user.save(function(error){
         if (error){
-        console.error(error);
+          console.error(error);
+          return res.sendStatus(400);
         }
-        res.json(post);
+        fs.readFile('./templates/post-template.jade', 'utf8', function (err, data) {
+          if (err){
+            res.sendStatus(400);
+          };
+          var postCompiler = jade.compile(data);
+          var html = postCompiler(post);
+          res.send(html);
+          res.status(201);
         });
      });
+    });
   });
 });
 

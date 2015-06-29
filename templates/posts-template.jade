@@ -1,15 +1,16 @@
-.postContainer.col-xs-12.paddingBottom-xl.textPrimary-gray
-  .postTop.col-xs-12.paddingTop-sm
-    .col-xs-8.pull-left
-      .profilePicPosts.col-xs-6
-      .username.col-xs-6
-        p username
-    .col-xs-4.pull-right
-        i.fa.fa-flag-o.fa.fa-2x.paddingRight-sm.col-xs-5
-        i.fa.fa-bomb.fa.fa-2x.col-xs-5
-  .postImage.col-xs-12
-  .postFooter.col-xs-12.paddingTop-sm
-    span.pull-left 2
-    i.fa.fa-bomb.fa.fa-2x.col-xs-2.pull-left
-    .postComment.textPrimary-gray.col-xs-8
-      p comment...
+for post in posts
+  .postContainer.col-xs-12.paddingBottom-xl.textPrimary-gray
+    .postTop.col-xs-12.paddingTop-sm
+      .col-xs-8.pull-left
+        .profilePicPosts.col-xs-6
+        .username.col-xs-6
+          p username: #{post.author}
+      .col-xs-4.pull-right
+          i.fa.fa-flag-o.fa.fa-2x.paddingRight-sm.col-xs-5
+          i.fa.fa-bomb.fa.fa-2x.col-xs-5
+    .postImage.col-xs-12
+      img(src=post.pictures)
+    .postFooter.col-xs-12.paddingTop-sm
+      i.fa.fa-bomb.fa.fa-2x.col-xs-2.pull-left
+      .postComment.textPrimary-gray.col-xs-8
+        p comment: #{post.comments.body}

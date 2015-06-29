@@ -140,6 +140,7 @@ app.use('/user/', comments);
 app.use('/user/', users);
 app.use('/user/', posts);
 app.use('/auth/', auth);
+app.use(express.static(__dirname + '/public'));
 
 //app variable is used to listen but not as variable
 var server = app.listen(config.serverPort, function() {

@@ -7,8 +7,8 @@ block main
         h5.title <strong>Nope</strong> Don't Care
         h1 An anti-social network.
         h1 Because you can't like everything.
-        button.btn.textPrimary-white.backgroundSecondary-color(type="submit")
-          p.txtMd Sign in with Facebook (#hateit)
+        button#signInButton.btn.textPrimary-white.backgroundSecondary-color(type="button" data-toggle="modal" data-target="#signUpModal")
+          p.txtMd Sign in
     .home-about.col-xs-12.padding-xl
       .home-about-title.col-xs-12.marginBottom-lg.marginTop-md
         h3 About <strong>Nope</strong> Don't Care
@@ -29,3 +29,4 @@ block main
         a(href="/about" title="Learn more")
           i.fa.fa-question-circle.fa-2x.faa-pulse.faa-show
           h1 I still don't get it...
+    include modal-register

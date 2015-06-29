@@ -4,6 +4,7 @@ var MongoURI = config.mongo.dbUrl;
 mongoose.connect(MongoURI);
 
 var express = require('express');
+var multer = require('multer');
 var bodyParser = require('body-parser');
 var jsonParser = bodyParser.json();
 var app = express();
@@ -31,11 +32,12 @@ app.set('views', './templates');
 var comments = require('./routes/comments.js');
 var users = require('./routes/users.js');
 var posts = require('./routes/posts.js');
-
+app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.urlencoded({ extended: false }));
 
 /* USERS ROUTE FOR DEV PURPOSES ONLY */
-if (config.env === 'dev') {
+
+if (config.env === 'development') {
   app.get('/users', function(req, res) {
   User.find({})
     .populate('posts')
@@ -48,32 +50,32 @@ if (config.env === 'dev') {
 
 /*ROUTE TO RENDER HOME PAGE*/
 app.get('/', function(req, res) {
-  res.render('home')
+  res.render('home');
 });
 
 /*FOR TESTING: ROUTE TO RENDER MODAL*/
 app.get('/modal', function(req, res) {
-  res.render('modal-form')
+  res.render('modal-form');
 });
 
 /*FOR TESTING: ROUTE TO RENDER USER PROFILE*/
 app.get('/userprofile', function(req, res) {
-  res.render('user-profile')
+  res.render('user-profile');
 });
 
 /*FOR TESTING: ROUTE TO RENDER USER FEED*/
 app.get('/userfeed', function(req, res) {
-  res.render('user-feed')
+  res.render('user-feed');
 });
 
 /*FOR TESTING: ROUTE TO RENDER HALL OF FAME*/
 app.get('/halloffame', function(req, res) {
-  res.render('hall-of-fame')
+  res.render('hall-of-fame');
 });
 
 /*FOR TESTING: ROUTE TO RENDER WHITE NOISE FEED*/
 app.get('/whitenoise', function(req, res) {
-  res.render('white-noise-feed')
+  res.render('white-noise-feed');
 });
 
 
@@ -88,13 +90,13 @@ app.post('/register', function(req, res) {
       fs.readFile('./templates/user.jade', 'utf8', function(err, data) {
         if (err) {
           res.sendStatus(400);
-        };
+        }
         var userCompiler = jade.compile(data);
         var html = userCompiler(user);
         res.send(html);
         res.status(201);
       });
-    };
+    }
   });
 });
 }
@@ -140,7 +142,13 @@ app.use('/user/', comments);
 app.use('/user/', users);
 app.use('/user/', posts);
 app.use('/auth/', auth);
-app.use(express.static(__dirname + '/public'));
+
+
+app.use(function(err, req, res, next) {
+  console.log(err.message);
+  console.error(err.stack);
+  res.sendStatus(500);
+});
 
 //app variable is used to listen but not as variable
 var server = app.listen(config.serverPort, function() {

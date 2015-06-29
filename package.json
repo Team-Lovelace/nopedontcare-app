@@ -4,6 +4,7 @@
   "description": "Nope, Don't Care",
   "main": "app.js",
   "scripts": {
+    "start": "node app.js",
     "test": "grunt jasmine-nodejs"
   },
   "author": "Team Lovelace",
@@ -12,8 +13,13 @@
     "async": "^1.0.0",
     "body-parser": "^1.13.1",
     "express": "^4.13.0",
+    "express-session": "^1.11.3",
     "jade": "^1.11.0",
-    "mongoose": "^4.0.6"
+    "method-override": "^2.3.3",
+    "mongoose": "^4.0.6",
+    "passport": "^0.2.2",
+    "passport-local": "^1.0.0",
+    "passport-local-mongoose": "^1.0.1"
   },
   "devDependencies": {
     "grunt": "^0.4.5",

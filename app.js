@@ -1,16 +1,47 @@
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/nope');
-
 var express = require('express');
+var cookieParser = require('cookie-parser');
+var session = require('express-session');
 var bodyParser = require('body-parser');
+var methodOverride = require('method-override');
 var jsonParser = bodyParser.json();
-var app = express();
+var passport = require('passport');
+
+var LocalStrategy = require('passport-local').Strategy;
+
+var MongoURI = process.env.MONGOURI || 'mongodb://localhost/nope';
+mongoose.connect(MongoURI, function(err, res){
+  if(err){
+    console.log('ERROR connecting to DB' + err);
+  } else{
+    console.log('Mongo Connected');
+  }
+});
 
 var jade = require('jade');
 var fs = require('fs');
 
+var app = express();
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(methodOverride('_method'));
+app.use(cookieParser());
+
+app.use(session({
+  secret: 'butts',
+  resave: true,
+  saveUninitialized: false
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
 var User = require('./lib/users.js');
 var Post = require('./lib/posts.js');
+
+passport.use(User.createStrategy());
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
 app.set('view engine', 'jade');
 app.set('views', './templates');
@@ -18,6 +49,7 @@ app.set('views', './templates');
 var comments = require('./routes/comments.js');
 var users = require('./routes/users.js');
 var posts = require('./routes/posts.js');
+var auth = require('./routes/auth.js');
 
 
 /* USERS ROUTE FOR DEV PURPOSES ONLY */
@@ -33,32 +65,33 @@ app.get('/users', function(req, res) {
 
 /*ROUTE TO RENDER HOME PAGE*/
 app.get('/', function(req, res) {
-  res.render('home')
+  console.log('Get Request for /');
+  res.render('home');
 });
 
 /*FOR TESTING: ROUTE TO RENDER MODAL*/
 app.get('/modal', function(req, res) {
-  res.render('modal-form')
+  res.render('modal-form');
 });
 
 /*FOR TESTING: ROUTE TO RENDER USER PROFILE*/
 app.get('/userprofile', function(req, res) {
-  res.render('user-profile')
+  res.render('user-profile');
 });
 
 /*FOR TESTING: ROUTE TO RENDER USER FEED*/
 app.get('/userfeed', function(req, res) {
-  res.render('user-feed')
+  res.render('user-feed');
 });
 
 /*FOR TESTING: ROUTE TO RENDER HALL OF FAME*/
 app.get('/halloffame', function(req, res) {
-  res.render('hall-of-fame')
+  res.render('hall-of-fame');
 });
 
 /*FOR TESTING: ROUTE TO RENDER WHITE NOISE FEED*/
 app.get('/whitenoise', function(req, res) {
-  res.render('white-noise-feed')
+  res.render('white-noise-feed');
 });
 
 
@@ -73,13 +106,13 @@ app.post('/register', function(req, res) {
       fs.readFile('./templates/user.jade', 'utf8', function(err, data) {
         if (err) {
           res.sendStatus(400);
-        };
+        }
         var userCompiler = jade.compile(data);
         var html = userCompiler(user);
         res.send(html);
         res.status(201);
       });
-    };
+    }
   });
 });
 
@@ -97,6 +130,7 @@ app.use(express.static(__dirname + '/public'));
 app.use('/user/', comments);
 app.use('/user/', users);
 app.use('/user/', posts);
+app.use('/auth/', auth);
 
 //app variable is used to listen but not as variable
 var server = app.listen(3000, function() {

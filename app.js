@@ -12,10 +12,10 @@ var LocalStrategy = require('passport-local').Strategy;
 
 var MongoURI = process.env.MONGOURI || 'mongodb://localhost/nope';
 var Port = process.env.PORT || 3000;
-mongoose.connect(MongoURI, function(err, res){
-  if(err){
+mongoose.connect(MongoURI, function(err, res) {
+  if (err) {
     console.log('ERROR connecting to DB' + err);
-  } else{
+  } else {
     console.log('Mongo Connected');
   }
 });
@@ -26,12 +26,16 @@ var fs = require('fs');
 var app = express();
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({
+  extended: false
+}));
 app.use(methodOverride('_method'));
 app.use(cookieParser());
 
 app.use(session({
-  store: new MongoStore({url: MongoURI}),
+  store: new MongoStore({
+    url: MongoURI
+  }),
   secret: 'butts',
   resave: true,
   saveUninitialized: false
@@ -56,9 +60,11 @@ var auth = require('./routes/auth.js');
 var moment = require('moment');
 
 app.post('/nopes', jsonParser);
-app.post('/nopes', function(req, res){
-  User.findOne({username: req.user.username}, function(error, user){
-    if (error){
+app.post('/nopes', function(req, res) {
+  User.findOne({
+    username: req.user.username
+  }, function(error, user) {
+    if (error) {
       console.log(error);
     }
     var post = new Post({
@@ -66,18 +72,18 @@ app.post('/nopes', function(req, res){
       caption: req.body.caption,
       pubDate: moment().format()
     });
-    post.save(function(error){
-      if (error){
+    post.save(function(error) {
+      if (error) {
         console.error(error);
       }
       user.posts.push(post._id);
-      user.save(function(error){
-        if (error){
+      user.save(function(error) {
+        if (error) {
           console.error(error);
           return res.sendStatus(400);
         }
-        fs.readFile('./templates/post-template.jade', 'utf8', function (err, data) {
-          if (err){
+        fs.readFile('./templates/post-template.jade', 'utf8', function(err, data) {
+          if (err) {
             res.sendStatus(400);
           };
           post.username = user.username;
@@ -86,7 +92,7 @@ app.post('/nopes', function(req, res){
           res.send(html);
           res.status(201);
         });
-     });
+      });
     });
   });
 });
@@ -119,6 +125,7 @@ app.get('/modal', function(req, res) {
   res.render('modal-form');
 });
 
+<<<<<<< HEAD
 app.get('/userprofile', function(req, res){
   if(req.user){
     User.findOne({username: req.user.username})
@@ -181,6 +188,38 @@ app.post('/register', function(req, res) {
     }
   });
 });
+
+//Multer Image Upload
+/*Define dependencies.*/
+var multer = require('multer');
+var app = express();
+var done = false;
+
+app.use(multer({
+  dest: './uploads/',
+  rename: function(fieldname, filename) {
+    return filename + Date.now();
+  },
+  onFileUploadStart: function(file) {
+    console.log(file.originalname + ' is starting ...')
+  },
+  onFileUploadComplete: function(file) {
+    console.log(file.fieldname + ' uploaded to  ' + file.path)
+    done = true;
+  }
+}));
+
+app.get('/', function(req, res) {
+  res.sendfile("index.html");
+});
+
+app.post('/api/photo', function(req, res) {
+  if (done == true) {
+    console.log(req.files);
+    res.end("File uploaded.");
+  }
+});
+//END multer
 
 //using an express method, static
 //that creates middlewear that serves up static files

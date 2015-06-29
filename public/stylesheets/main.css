@@ -684,6 +684,11 @@ h5 {
 #nope-gif {
   display: none; }
 
+#cancelButton {
+  margin: 0px !important;
+  background-color: transparent;
+  border: 2px solid gray; }
+
 .floatLeft {
   float: left; }
 

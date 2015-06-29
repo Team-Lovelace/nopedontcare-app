@@ -658,6 +658,19 @@ h5 {
   width: 30px;
   background-color: #ffffff; }
 
+.tooltip {
+  display: none;
+  position: absolute;
+  border: 1px solid #333;
+  background-color: #161616;
+  border-radius: 5px;
+  padding: 10px;
+  color: #fff;
+  font-size: 12px Arial; }
+
+.about-container {
+  padding-top: 100px; }
+
 .floatLeft {
   float: left; }
 

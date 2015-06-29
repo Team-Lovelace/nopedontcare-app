@@ -1,0 +1,20 @@
+extends layout
+
+block main
+    h1 Register
+    form(role="form", action="/auth/register", method="post")
+        .form-group
+            label(for="username") Username
+            input#username.form-control(name="username", type="text")
+        .form-group
+            label(for="password") Password
+            input#password.form-control(name="password", type="password")
+        .form-group
+            label(for="name") Name
+            input#name.form-control(name="name", type="text")
+        .form-group
+            label(for="email") Email
+            input#email.form-control(name="email", type="email")
+        p
+            a.btn.btn-link(href="/contacts") Cancel
+            button.btn.btn-default(type="submit", value="Register") Register

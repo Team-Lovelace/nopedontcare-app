@@ -1,10 +1,24 @@
+var config = require('./config');
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/nope');
+var MongoURI = config.mongo.dbUrl;
+mongoose.connect(MongoURI);
 
 var express = require('express');
+var multer = require('multer');
 var bodyParser = require('body-parser');
 var jsonParser = bodyParser.json();
 var app = express();
+var cookieParser = require('cookie-parser');
+
+// Auth dependencies
+var session = require('express-session');
+var MongoStore = require('connect-mongo')(session);
+var mongoose = require('mongoose');
+var passport = require('passport');
+// var FacebookStrategy = require('passport-facebook').Strategy;
+// var TwitterStrategy = require('passport-twitter').Strategy;
+var findOrCreateProfile = require('./findOrCreateProfile');
+var auth = require('./routes/auth.js');
 
 var jade = require('jade');
 var fs = require('fs');
@@ -18,10 +32,13 @@ app.set('views', './templates');
 var comments = require('./routes/comments.js');
 var users = require('./routes/users.js');
 var posts = require('./routes/posts.js');
-
+app.use(express.static(__dirname + '/public'));
+app.use(bodyParser.urlencoded({ extended: false }));
 
 /* USERS ROUTE FOR DEV PURPOSES ONLY */
-app.get('/users', function(req, res) {
+
+if (config.env === 'development') {
+  app.get('/users', function(req, res) {
   User.find({})
     .populate('posts')
     .exec(function(error, userList) {
@@ -33,32 +50,32 @@ app.get('/users', function(req, res) {
 
 /*ROUTE TO RENDER HOME PAGE*/
 app.get('/', function(req, res) {
-  res.render('home')
+  res.render('home');
 });
 
 /*FOR TESTING: ROUTE TO RENDER MODAL*/
 app.get('/modal', function(req, res) {
-  res.render('modal-form')
+  res.render('modal-form');
 });
 
 /*FOR TESTING: ROUTE TO RENDER USER PROFILE*/
 app.get('/userprofile', function(req, res) {
-  res.render('user-profile')
+  res.render('user-profile');
 });
 
 /*FOR TESTING: ROUTE TO RENDER USER FEED*/
 app.get('/userfeed', function(req, res) {
-  res.render('user-feed')
+  res.render('user-feed');
 });
 
 /*FOR TESTING: ROUTE TO RENDER HALL OF FAME*/
 app.get('/halloffame', function(req, res) {
-  res.render('hall-of-fame')
+  res.render('hall-of-fame');
 });
 
 /*FOR TESTING: ROUTE TO RENDER WHITE NOISE FEED*/
 app.get('/whitenoise', function(req, res) {
-  res.render('white-noise-feed')
+  res.render('white-noise-feed');
 });
 
 
@@ -73,33 +90,68 @@ app.post('/register', function(req, res) {
       fs.readFile('./templates/user.jade', 'utf8', function(err, data) {
         if (err) {
           res.sendStatus(400);
-        };
+        }
         var userCompiler = jade.compile(data);
         var html = userCompiler(user);
         res.send(html);
         res.status(201);
       });
-    };
+    }
   });
 });
-
-//using an express method, static
-//that creates middlewear that serves up static files
-//along with our html
-//references the public folder
-//returns static files back to browser
-app.use(express.static(__dirname + '/public'));
-
-
+}
 /* END USERS ROUTE */
+
+app.use(cookieParser());
+app.use(session({
+  store: new MongoStore({url: MongoURI}),
+  secret: 'learn node',
+  resave: true,
+  saveUninitialized: false
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(User.createStrategy());
+
+// passport.use(new TwitterStrategy({
+//   consumerKey: '...',
+//   consumerSecret: '...',
+//   callbackURL: "http://localhost:3000/auth/twitter/callback"
+// },
+// function(token, tokenSecret, profile, done){
+//   findOrCreateProfile({twitterId: profile.id}, profile, done);
+// }
+// ));
+
+// passport.use(new FacebookStrategy({
+//   clientID: '1069353713094731',
+//   clientSecret: '7d7ea0bc01204e0248f81fd179a9c90e',
+//   callbackURL: config.authCallbackUrl
+// },
+// function(accessToken, refreshToken, profile, done){
+//   findOrCreateProfile({facebookID: profile.id}, profile, done);
+// }));
+
+
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser);
 
 // mount the apiRouter onto our instance of express
 app.use('/user/', comments);
 app.use('/user/', users);
 app.use('/user/', posts);
+app.use('/auth/', auth);
+
+
+app.use(function(err, req, res, next) {
+  console.log(err.message);
+  console.error(err.stack);
+  res.sendStatus(500);
+});
 
 //app variable is used to listen but not as variable
-var server = app.listen(3000, function() {
+var server = app.listen(config.serverPort, function() {
 
   var host = server.address().address;
   var port = server.address().port;

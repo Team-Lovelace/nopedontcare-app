@@ -24,10 +24,10 @@ config.mongo.dbUrl = 'mongodb://localhost/nope';
 
 config.secrets = {};
 
-config.secretNames = [
-  'GITHUB_CLIENT_SECRET',
-  'GITHUB_CLIENT_ID',
-  'SESSION_KEY'
-];
+// config.secretNames = [
+//   'GITHUB_CLIENT_SECRET',
+//   'GITHUB_CLIENT_ID',
+//   'SESSION_KEY'
+// ];
 
 module.exports = config;

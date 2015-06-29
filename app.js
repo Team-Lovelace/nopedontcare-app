@@ -14,8 +14,8 @@ var session = require('express-session');
 var MongoStore = require('connect-mongo')(session);
 var mongoose = require('mongoose');
 var passport = require('passport');
-var FacebookStrategy = require('passport-facebook').Strategy;
-var TwitterStrategy = require('passport-twitter').Strategy;
+// var FacebookStrategy = require('passport-facebook').Strategy;
+// var TwitterStrategy = require('passport-twitter').Strategy;
 var findOrCreateProfile = require('./findOrCreateProfile');
 var auth = require('./routes/auth.js');
 
@@ -32,6 +32,7 @@ var comments = require('./routes/comments.js');
 var users = require('./routes/users.js');
 var posts = require('./routes/posts.js');
 
+app.use(bodyParser.urlencoded({ extended: false }));
 
 /* USERS ROUTE FOR DEV PURPOSES ONLY */
 if (config.env === 'dev') {
@@ -111,24 +112,24 @@ app.use(passport.initialize());
 app.use(passport.session());
 passport.use(User.createStrategy());
 
-passport.use(new TwitterStrategy({
-  consumerKey: '...',
-  consumerSecret: '...',
-  callbackURL: "http://localhost:3000/auth/twitter/callback"
-},
-function(token, tokenSecret, profile, done){
-  findOrCreateProfile({twitterId: profile.id}, profile, done);
-}
-));
+// passport.use(new TwitterStrategy({
+//   consumerKey: '...',
+//   consumerSecret: '...',
+//   callbackURL: "http://localhost:3000/auth/twitter/callback"
+// },
+// function(token, tokenSecret, profile, done){
+//   findOrCreateProfile({twitterId: profile.id}, profile, done);
+// }
+// ));
 
-passport.use(new FacebookStrategy({
-  clientID: '1069353713094731',
-  clientSecret: '7d7ea0bc01204e0248f81fd179a9c90e',
-  callbackURL: config.authCallbackUrl
-},
-function(accessToken, refreshToken, profile, done){
-  findOrCreateProfile({facebookID: profile.id}, profile, done);
-}));
+// passport.use(new FacebookStrategy({
+//   clientID: '1069353713094731',
+//   clientSecret: '7d7ea0bc01204e0248f81fd179a9c90e',
+//   callbackURL: config.authCallbackUrl
+// },
+// function(accessToken, refreshToken, profile, done){
+//   findOrCreateProfile({facebookID: profile.id}, profile, done);
+// }));
 
 
 passport.serializeUser(User.serializeUser());

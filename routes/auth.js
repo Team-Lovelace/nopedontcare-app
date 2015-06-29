@@ -1,5 +1,5 @@
 var passport = require('passport');
-var Account = require('../models/account');
+var User = require('../lib/users.js');
 var express = require('express');
 var router = express.Router();
 
@@ -8,13 +8,17 @@ router.route('/register')
     res.render('register', {});
   })
   .post(function(req, res, next) {
-    Account.register(new Account({username: req.body.username}), req.body.password, function(err, account) {
+    User.register(new User({username: req.body.username,
+      name: req.body.name,
+      email: req.body.email,
+      }), req.body.password, function(err, user) {
       if(err) {
-        return res.render('register', {account: account});
+        console.log(err);
+        return res.render('register', {account: user});
       }
 
-      req.login(account, function(err) {
-        res.redirect('/contacts');
+      req.login(user, function(err) {
+        res.redirect('/');
       });
     })
   })

@@ -18,23 +18,6 @@ $(document).ready(function() {
     data.password = $('#passwordLogin').val();
     $.post('/auth/login', data, function(){
       location.reload();
-    });
-  });
-
-// Signup Modal Submission
-  $('#signUpButton').click(function(){
-    var data = {};
-    data.username = $('#username').val();
-    data.name = $('#name').val();
-    data.email = $('#email').val();
-    data.password = $('#password').val();
-    data.phonenumber = $('#phonenumber').val();
-    data.bio = $('#bio').val();
-
-    $.post('/auth/register', data, function(){
-      location.reload();
-      });
-    });
 
   // $('#nope-submit').on('click', function(event){
   //   var nope = {
@@ -50,4 +33,19 @@ $(document).ready(function() {
   //     $('.postContainer').prepend(response);
   //   });
   // });
+
+// Signup Modal Submission
+  $('#signUpButton').click(function(){
+    var data = {};
+    data.username = $('#username').val();
+    data.name = $('#name').val();
+    data.email = $('#email').val();
+    data.password = $('#password').val();
+    data.phonenumber = $('#phonenumber').val();
+    data.bio = $('#bio').val();
+
+    $.post('/auth/register', data, function(){
+      location.reload();
+      });
+    });
 }); //End of document ready

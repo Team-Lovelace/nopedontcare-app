@@ -53,6 +53,43 @@ var comments = require('./routes/comments.js');
 var users = require('./routes/users.js');
 var posts = require('./routes/posts.js');
 var auth = require('./routes/auth.js');
+var moment = require('moment');
+
+app.post('/nopes', jsonParser);
+app.post('/nopes', function(req, res){
+  User.findOne({username: req.user.username}, function(error, user){
+    if (error){
+      console.log(error);
+    }
+    var post = new Post({
+      author: user._id,
+      caption: req.body.caption,
+      pubDate: moment().format()
+    });
+    post.save(function(error){
+      if (error){
+        console.error(error);
+      }
+      user.posts.push(post._id);
+      user.save(function(error){
+        if (error){
+          console.error(error);
+          return res.sendStatus(400);
+        }
+        fs.readFile('./templates/post-template.jade', 'utf8', function (err, data) {
+          if (err){
+            res.sendStatus(400);
+          };
+          post.username = user.username;
+          var postCompiler = jade.compile(data);
+          var html = postCompiler(post);
+          res.send(html);
+          res.status(201);
+        });
+     });
+    });
+  });
+});
 
 
 /* USERS ROUTE FOR DEV PURPOSES ONLY */
@@ -82,14 +119,22 @@ app.get('/modal', function(req, res) {
   res.render('modal-form');
 });
 
-/*FOR TESTING: ROUTE TO RENDER USER PROFILE*/
-app.get('/userprofile', function(req, res) {
+app.get('/userprofile', function(req, res){
   if(req.user){
-    res.render('user-profile', {user: req.user});
+    User.findOne({username: req.user.username})
+    .populate('posts')
+    .exec(function(error, user){
+      console.log(user);
+      res.render('user-profile', {user: user});
+    });
   } else {
     res.redirect('/');
   }
 });
+/*FOR TESTING: ROUTE TO RENDER USER PROFILE*/
+// app.get('/userprofile', function(req, res) {
+//   res.render('user-profile', {user: req.user});
+// });
 
 /*FOR TESTING: ROUTE TO RENDER USER FEED*/
 app.get('/userfeed', function(req, res) {

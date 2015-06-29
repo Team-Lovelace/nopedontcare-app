@@ -11,6 +11,7 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 
 var MongoURI = process.env.MONGOURI || 'mongodb://localhost/nope';
+var Port = process.env.PORT || 3000;
 mongoose.connect(MongoURI, function(err, res){
   if(err){
     console.log('ERROR connecting to DB' + err);
@@ -135,7 +136,7 @@ app.use('/user/', posts);
 app.use('/auth/', auth);
 
 //app variable is used to listen but not as variable
-var server = app.listen(3000, function() {
+var server = app.listen(Port, function() {
 
   var host = server.address().address;
   var port = server.address().port;

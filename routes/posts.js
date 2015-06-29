@@ -27,40 +27,6 @@ router.get('/:username/nopes/:id', function(req, res){
   });
 });
 
-router.post('/:username/nopes', jsonParser);
-router.post('/:username/nopes', function(req, res){
-  User.findOne({userName: req.params.username}, function(error, user){
-    if (error){
-      console.log(error);
-    }
-    var post = new Post({
-      author:user._id,
-      caption: req.body.caption,
-      pubDate: moment().format()
-    });
-    post.save(function(error){
-      if (error){
-        console.error(error);
-      }
-      user.posts.push(post._id);
-      user.save(function(error){
-        if (error){
-          console.error(error);
-          return res.sendStatus(400);
-        }
-        fs.readFile('./templates/post-template.jade', 'utf8', function (err, data) {
-          if (err){
-            res.sendStatus(400);
-          };
-          var postCompiler = jade.compile(data);
-          var html = postCompiler(post);
-          res.send(html);
-          res.status(201);
-        });
-     });
-    });
-  });
-});
 
 router.delete('/:username/nopes/:id', function(req, res){
   User.findOne({userName: req.params.username}, function(error, user){

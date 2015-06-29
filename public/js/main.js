@@ -18,7 +18,7 @@ $(document).ready(function() {
     };
    $.ajax({
       method: 'POST',
-      url: 'http://localhost:3000/user/courtney/nopes',
+      url: 'http://localhost:3000/nopes',
       data: JSON.stringify(nope),
       contentType: "application/json; charset=utf-8"
     }).done(function(response){

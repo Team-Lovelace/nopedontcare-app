@@ -2,6 +2,7 @@ var mongoose = require('mongoose');
 var express = require('express');
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
+var MongoStore = require('connect-mongo')(session);
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 var jsonParser = bodyParser.json();
@@ -29,6 +30,7 @@ app.use(methodOverride('_method'));
 app.use(cookieParser());
 
 app.use(session({
+  store: new MongoStore({url: MongoURI}),
   secret: 'butts',
   resave: true,
   saveUninitialized: false
@@ -76,7 +78,7 @@ app.get('/modal', function(req, res) {
 
 /*FOR TESTING: ROUTE TO RENDER USER PROFILE*/
 app.get('/userprofile', function(req, res) {
-  res.render('user-profile');
+  res.render('user-profile', {user: req.user});
 });
 
 /*FOR TESTING: ROUTE TO RENDER USER FEED*/

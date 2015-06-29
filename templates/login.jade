@@ -1,0 +1,14 @@
+extends layout
+
+block main
+    h1 Please login
+    form(role="form", action="/auth/login", method="post")
+        .form-group
+            label(for="username") Username
+            input#username.form-control(name="username", type="text")
+        .form-group
+            label(for="password") Password
+            input#password.form-control(name="password", type="password")
+        p
+            a.btn.btn-link(href="/") Cancel
+            button.btn.btn-default(type="submit", value="Log In") Log in

@@ -8,8 +8,8 @@
           button.close(type="button" data-dismiss="modal") &times;
           h4.modal-title Sign In
         .modal-body
-          input#username.form-input.form-control.input-lg(required data-parsley-minlength="2" data-parsley-trigger="focusout" type="text" placeholder="username")
-          input#password.form-input.form-control.input-lg(required data-parsley-minlength="2" data-parsley-trigger="focusout" type="text" placeholder="password")
+          input#usernameLogin.form-input.form-control.input-lg(required data-parsley-minlength="2" data-parsley-trigger="focusout" type="text" placeholder="username")
+          input#passwordLogin.form-input.form-control.input-lg(required data-parsley-minlength="2" data-parsley-trigger="focusout" type="password" placeholder="password")
         .modal-footer
           button#cancelButton.btn-lg.modalButton.textPrimary-black(type="button" data-dismiss="modal") Cancel
-          button.btn-lg.modalButton.textPrimary-white(type="button" data-dismiss="modal") Sign In
+          button.btn-lg.modalButton.textPrimary-white(type="button" id="loginButton" data-dismiss="modal") Sign In

@@ -72,6 +72,7 @@ app.get('/', function(req, res) {
   console.log('Get Request for /');
   res.render('home');
   } else {
+    console.log(req);
     res.render('user-profile', {user: req.user});
   }
 });
@@ -83,7 +84,11 @@ app.get('/modal', function(req, res) {
 
 /*FOR TESTING: ROUTE TO RENDER USER PROFILE*/
 app.get('/userprofile', function(req, res) {
-  res.render('user-profile', {user: req.user});
+  if(req.user){
+    res.render('user-profile', {user: req.user});
+  } else {
+    res.redirect('/');
+  }
 });
 
 /*FOR TESTING: ROUTE TO RENDER USER FEED*/

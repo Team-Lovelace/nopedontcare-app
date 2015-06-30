@@ -39,4 +39,30 @@ $(document).ready(function() {
     $('#nope-button').hide();
   });
 
+// Login Modal Submission
+  $('#loginButton').click(function(){
+    var data = {};
+    data.username = $('#usernameLogin').val();
+    data.password = $('#passwordLogin').val();
+    $.post('/auth/login', data, function(){
+      location.reload();
+    });
+  });
+
+// Signup Modal Submission
+  $('#signUpButton').click(function(){
+    var data = {};
+    data.username = $('#username').val();
+    data.name = $('#name').val();
+    data.email = $('#email').val();
+    data.password = $('#password').val();
+    data.phonenumber = $('#phonenumber').val();
+    data.bio = $('#bio').val();
+
+    $.post('/auth/register', data, function(){
+      location.reload();
+      });
+    });
+
+
 }); //End of document ready

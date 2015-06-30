@@ -89,13 +89,15 @@ app.get('/', function(req, res) {
     res.render('home');
   } else {
     console.log(req);
-    User.findOne({username: req.user.username})
-    .populate('posts')
-    .exec(function(err, user){
-      res.render('user-profile', {
-      user: user
-    });
-    });
+    User.findOne({
+      username: req.user.username
+    })
+      .populate('posts')
+      .exec(function(err, user) {
+        res.render('user-profile', {
+          user: user
+        });
+      });
 
   }
 });
@@ -151,7 +153,6 @@ app.get('/whitenoise', function(req, res) {
 app.get('/about', function(req, res) {
   res.render('about');
 });
-
 
 
 app.post('/register', jsonParser);

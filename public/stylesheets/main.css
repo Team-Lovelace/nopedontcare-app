@@ -35,6 +35,10 @@ button {
   .home-last a {
     color: #ffffff; }
 
+.log-out-button {
+  background-color: transparent;
+  border: 2px solid white; }
+
 /*Colors as variables*/
 /*Colors as classes*/
 .backgroundPrimary-color {
@@ -644,13 +648,16 @@ h5 {
 .postContainer {
   padding: 0px !important; }
 
-.postTop.col-xs-12 {
+.postTop {
   height: 50px;
   background-color: #333333;
   padding-left: 0px;
   padding-right: 0px; }
 
-.postFooter.col-xs-12 {
+.postImage {
+  padding: 0px; }
+
+.postFooter {
   height: 50px;
   background-color: #333333; }
 

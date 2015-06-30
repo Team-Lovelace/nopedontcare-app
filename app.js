@@ -68,8 +68,13 @@ app.get('/users', function(req, res) {
 
 /*ROUTE TO RENDER HOME PAGE*/
 app.get('/', function(req, res) {
+  if(!req.user){
   console.log('Get Request for /');
   res.render('home');
+  } else {
+    console.log(req);
+    res.render('user-profile', {user: req.user});
+  }
 });
 
 /*FOR TESTING: ROUTE TO RENDER MODAL*/
@@ -79,12 +84,20 @@ app.get('/modal', function(req, res) {
 
 /*FOR TESTING: ROUTE TO RENDER USER PROFILE*/
 app.get('/userprofile', function(req, res) {
-  res.render('user-profile', {user: req.user});
+  if(req.user){
+    res.render('user-profile', {user: req.user});
+  } else {
+    res.redirect('/');
+  }
 });
 
 /*FOR TESTING: ROUTE TO RENDER USER FEED*/
 app.get('/userfeed', function(req, res) {
+  if(req.user){
   res.render('user-feed');
+  } else {
+    res.redirect('/');
+  }
 });
 
 /*FOR TESTING: ROUTE TO RENDER HALL OF FAME*/
@@ -99,7 +112,7 @@ app.get('/whitenoise', function(req, res) {
 
 /*FOR TESTING: ROUTE TO RENDER WHITE NOISE FEED*/
 app.get('/about', function(req, res) {
-  res.render('about')
+  res.render('about');
 });
 
 

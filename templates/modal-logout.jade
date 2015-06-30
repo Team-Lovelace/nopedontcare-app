@@ -1,0 +1,14 @@
+.container
+  //- .h2 Modal Example
+  //- button#modal-button.btn.btn-info.btn-lg(type="button" data-toggle="modal" data-target="#myModal") Open Modal
+  div#logout.modal.fade(role="dialog")
+    div.modal-dialog
+      .modal-content
+        .modal-header
+          button.close(type="button" data-dismiss="modal") &times;
+          h4.modal-title You're leaving us??
+        .modal-body
+            a(href="/auth/logout" title="Logout")
+              button.modalButton.btn-lg.textPrimary-white(id="logout" type="submit") Logout
+            //- .modal-footer
+

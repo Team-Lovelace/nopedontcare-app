@@ -174,7 +174,7 @@ app.use('/auth/', auth);
 var multer = require('multer');
 var done = false;
 
-/// move me downstream!!!!!!!!!!!
+
 app.use(multer({
   dest: './uploads/',
   rename: function(pictures, src) {
@@ -259,7 +259,7 @@ app.post('/nopes', function(req, res) {
     });
   });
 });
-// END MOVE ME DOWNSTREAM!!!!
+//
 
 //app variable is used to listen but not as variable
 var server = app.listen(Port, function() {

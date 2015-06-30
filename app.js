@@ -98,7 +98,6 @@ app.get('/modal', function(req, res) {
   res.render('modal-form');
 });
 
-<<<<<<< HEAD
 app.get('/userprofile', function(req, res){
   if(req.user){
     User.findOne({username: req.user.username})

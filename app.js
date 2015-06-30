@@ -89,9 +89,16 @@ app.get('/', function(req, res) {
     res.render('home');
   } else {
     console.log(req);
-    res.render('user-profile', {
-      user: req.user
-    });
+    User.findOne({
+      username: req.user.username
+    })
+      .populate('posts')
+      .exec(function(err, user) {
+        res.render('user-profile', {
+          user: user
+        });
+      });
+
   }
 });
 
@@ -109,6 +116,7 @@ app.get('/userprofile', function(req, res) {
       .populate('posts')
       .exec(function(error, user) {
         console.log(user);
+        console.log(user.posts);
         res.render('user-profile', {
           user: user
         });
@@ -147,7 +155,6 @@ app.get('/about', function(req, res) {
 });
 
 
-
 app.post('/register', jsonParser);
 app.post('/register', function(req, res) {
   User.create(req.body, function(error, user) {
@@ -161,8 +168,8 @@ app.post('/register', function(req, res) {
         }
         var userCompiler = jade.compile(data);
         var html = userCompiler(user);
-        res.send(html);
-        res.status(201);
+        //TO DO: refresh page you make the request from
+        res.render('/userprofile');
       });
     }
   });
@@ -245,7 +252,7 @@ app.post('/nopes', function(req, res) {
     }
     var post = new Post({
       author: user._id,
-      picture: req.locals.pictureSrc,
+      picture: 'https://s3.amazonaws.com/nopes/' + req.locals.pictureSrc,
       caption: req.body.caption,
       pubDate: moment().format()
     });

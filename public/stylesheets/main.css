@@ -35,6 +35,10 @@ button {
   .home-last a {
     color: #ffffff; }
 
+.log-out-button {
+  background-color: transparent;
+  border: 2px solid white; }
+
 /*Colors as variables*/
 /*Colors as classes*/
 .backgroundPrimary-color {
@@ -56,7 +60,7 @@ button {
   background-color: #f8f8f8; }
 
 .textPrimary-color {
-  color: #8c75af; }
+  color: #5C5C5C; }
 
 .textSecondary-color {
   color: #39b4a5; }
@@ -622,6 +626,9 @@ h5 {
   background-color: transparent;
   border: 2px solid white; }
 
+.user-profile-posts {
+  padding: 5px; }
+
 #user-feed-text-carousel {
   margin-top: 100px; }
 
@@ -642,19 +649,18 @@ h5 {
   height: 400px; }
 
 .postContainer {
-  background-color: #ffffff;
   padding: 0px !important; }
 
-.postTop.col-xs-12 {
+.postTop {
   height: 50px;
   background-color: #333333;
   padding-left: 0px;
   padding-right: 0px; }
 
-.postImage.col-xs-12 {
-  height: 250px; }
+.postImage {
+  padding: 0px; }
 
-.postFooter.col-xs-12 {
+.postFooter {
   height: 50px;
   background-color: #333333; }
 

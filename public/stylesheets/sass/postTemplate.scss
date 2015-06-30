@@ -1,21 +1,21 @@
 .postContainer {
-  background-color: #ffffff;
+  // background-color: #ffffff;
   padding: 0px !important;
 }
 
 
-.postTop.col-xs-12{
+.postTop{
   height: 50px;
   background-color: #333333;
   padding-left: 0px;
   padding-right: 0px;
 }
 
-.postImage.col-xs-12{
-  height: 250px;
+.postImage {
+  padding: 0px;
 }
 
-.postFooter.col-xs-12{
+.postFooter {
   height: 50px;
   background-color: #333333;
 }

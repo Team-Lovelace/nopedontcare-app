@@ -1,16 +1,16 @@
 for post in user.posts
-  .postContainer.col-xs-12.paddingBottom-xl.textPrimary-gray
+  .postContainer.col-xs-12.col-md-5.margin-sm.textPrimary-gray
     .postTop.col-xs-12.paddingTop-sm
       .col-xs-8.pull-left
         .profilePicPosts.col-xs-6
         .username.col-xs-6
-          p username: #{user.username}
+          p #{user.username}
       .col-xs-4.pull-right
           i.fa.fa-flag-o.fa.fa-2x.paddingRight-sm.col-xs-5
           i.fa.fa-bomb.fa.fa-2x.col-xs-5
     .postImage.col-xs-12
-      img(src=post.pictures)
+      img.img-responsive(src=post.picture)
     .postFooter.col-xs-12.paddingTop-sm
       i.fa.fa-bomb.fa.fa-2x.col-xs-2.pull-left
       .postComment.textPrimary-gray.col-xs-8
-        p comment: #{post.caption}
+        p #{post.caption}

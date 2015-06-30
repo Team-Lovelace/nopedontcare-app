@@ -16,6 +16,11 @@ html
         a.navbar-brand(href="/" title="Home")
           i.fa.fa-thumbs-o-down.fa-2x.faa-tada.animated-hover
       .collapse.navbar-collapse.navbar-ex1-collapse
+        ul.nav.navbar-nav.navbar-left
+          li.pull-left
+            a(href="#" title="Logout")
+              i.fa.fa-glass.fa-2x.faa-tada.animated-hover(type="button" data-toggle="modal" data-target="#logout")
+              h.hidden-sm.hidden-md.hidden-lg.paddingLeft-md Logout
         ul.nav.navbar-nav.navbar-right
           li
             a(href="#" title="Create a new post")
@@ -44,6 +49,7 @@ html
         a.learn-more.col-xs-12.col-sm-8.col-sm-offset-2(href="/about") Learn More
 
     include modal-form-posts
+    include modal-logout
 
     script(type="text/javascript", src="/js/jquery-min.js")
     script(src="/js/bootstrap.min.js")

@@ -84,12 +84,14 @@ app.get('/users', function(req, res) {
 
 /*ROUTE TO RENDER HOME PAGE*/
 app.get('/', function(req, res) {
-  if(!req.user){
-  console.log('Get Request for /');
-  res.render('home');
+  if (!req.user) {
+    console.log('Get Request for /');
+    res.render('home');
   } else {
     console.log(req);
-    res.render('user-profile', {user: req.user});
+    res.render('user-profile', {
+      user: req.user
+    });
   }
 });
 
@@ -98,32 +100,22 @@ app.get('/modal', function(req, res) {
   res.render('modal-form');
 });
 
-<<<<<<< HEAD
 
 app.get('/userprofile', function(req, res) {
-  User.findOne({
-    username: req.user.username
-  })
-    .populate('posts')
-    .exec(function(error, user) {
-      console.log(user);
-      res.render('user-profile', {
-        user: user
+  if (req.user) {
+    User.findOne({
+      username: req.user.username
+    })
+      .populate('posts')
+      .exec(function(error, user) {
+        console.log(user);
+        res.render('user-profile', {
+          user: user
+        });
       });
-    });
-=======
-app.get('/userprofile', function(req, res){
-  if(req.user){
-    User.findOne({username: req.user.username})
-    .populate('posts')
-    .exec(function(error, user){
-      console.log(user);
-      res.render('user-profile', {user: user});
-    });
   } else {
     res.redirect('/');
   }
->>>>>>> 0c94a97497e4d6f6f8c3916b3a653f0e3fa442b8
 });
 /*FOR TESTING: ROUTE TO RENDER USER PROFILE*/
 // app.get('/userprofile', function(req, res) {
@@ -132,8 +124,8 @@ app.get('/userprofile', function(req, res){
 
 /*FOR TESTING: ROUTE TO RENDER USER FEED*/
 app.get('/userfeed', function(req, res) {
-  if(req.user){
-  res.render('user-feed');
+  if (req.user) {
+    res.render('user-feed');
   } else {
     res.redirect('/');
   }
@@ -197,11 +189,6 @@ app.use('/auth/', auth);
 var multer = require('multer');
 var done = false;
 
-<<<<<<< HEAD
-
-=======
-/// move me downstream!!!!!!!!!!!
->>>>>>> 0c94a97497e4d6f6f8c3916b3a653f0e3fa442b8
 app.use(multer({
   dest: './uploads/',
   rename: function(pictures, src) {
@@ -286,11 +273,6 @@ app.post('/nopes', function(req, res) {
     });
   });
 });
-<<<<<<< HEAD
-//
-=======
-// END MOVE ME DOWNSTREAM!!!!
->>>>>>> 0c94a97497e4d6f6f8c3916b3a653f0e3fa442b8
 
 //app variable is used to listen but not as variable
 var server = app.listen(Port, function() {

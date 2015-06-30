@@ -26,7 +26,7 @@ $(document).ready(function() {
       .css({
         top: mousey,
         left: mousex
-      })
+      });
   });
 
 

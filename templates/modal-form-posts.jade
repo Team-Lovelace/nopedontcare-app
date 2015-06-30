@@ -9,12 +9,14 @@
           h4.modal-title create a new post
         .modal-body
           //- input#postPhoto.form-input.form-control.input-md(required data-parsley-minlength="2" data-parsley-trigger="focusout" type="text" placeholder="filename here")
-          div.input-group
-            span#upload-photo-from-computer.input-group-btn
-              span.btn.uploadButton
-                  p.pull-left.marginRight-lg Upload Image From Computer
-                  input#file(type="file" multiple)
-              //- input.form-control(type="text" readonly)
-          input#postContent.form-input.form-control.input-lg(required data-parsley-minlength="2" data-parsley-trigger="focusout" type="text" placeholder="comment on post")
-        .modal-footer
-          button.modalButton.btn-lg.textPrimary-white(type="button" data-dismiss="modal") post it
+          form(id="uploadForm" enctype="multipart/form-data" action="/nopes" method="POST")
+            //- div.input-group
+            //-   span#upload-photo-from-computer.input-group-btn
+            //-     span.btn.uploadButton
+            //-         p.pull-left.marginRight-lg Upload Image From Computer
+            input(type="file" name="file" )
+            //- input.form-control(type="text" readonly)
+            input.form-input.form-control.input-lg(required data-parsley-minlength="2" data-parsley-trigger="focusout" name="caption" type="text" placeholder="comment on post")
+            button.modalButton.btn-lg.textPrimary-white(id="nope-submit" type="submit" ) Submit
+            //- .modal-footer
+

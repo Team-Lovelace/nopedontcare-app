@@ -93,7 +93,11 @@ app.get('/userprofile', function(req, res) {
 
 /*FOR TESTING: ROUTE TO RENDER USER FEED*/
 app.get('/userfeed', function(req, res) {
+  if(req.user){
   res.render('user-feed');
+  } else {
+    res.redirect('/');
+  }
 });
 
 /*FOR TESTING: ROUTE TO RENDER HALL OF FAME*/

@@ -626,6 +626,9 @@ h5 {
   background-color: transparent;
   border: 2px solid white; }
 
+.user-profile-posts {
+  padding: 5px; }
+
 #user-feed-text-carousel {
   margin-top: 100px; }
 

@@ -2,7 +2,7 @@ extends layout
 block main
   .row
     .user-profile-container.backgroundPrimary-color.col-xs-12
-      .user-profile-information.col-xs-10.col-xs-offset-2.col-sm-8.col-sm-offset-2.paddingBottom-xl
+      .user-profile-information.col-xs-11.col-xs-offset-1.col-sm-9.col-sm-offset-2.paddingBottom-xl
           .profilePic.col-xs-12.col-sm-3.paddingBottom-lg
             div#profileBackground.backgroundPrimary-white
               i.fa.fa-frown-o.fa-4x.textPrimary-color.paddingTop-lg
@@ -18,10 +18,9 @@ block main
                 p 45 Following
           .col-xs-12.col-sm-3
             button#editUserButton.textPrimary-white(type="button" data-toggle="modal" data-target="#myUserModal") Edit User Info
-      .user-profile-text-carousel.textPrimary-white.col-xs-10.col-xs-offset-2.col-sm-8.col-sm-offset-2.marginBottom-xl
+      .user-profile-text-carousel.textPrimary-white.col-xs-11.col-xs-offset-1.col-sm-10.col-sm-offset-1.col-md-offset-2.marginBottom-xl
           h3 Here are your photos. Just no babies, ok?
-      .user-profile-posts.col-xs-12.col-sm-8.col-sm-offset-2
-        .user-profile-posts-col-1.col-xs-12.col-sm-12.pull-left.marginBottom-xl
+      .user-profile-posts.col-xs-12.col-sm-10.col-sm-offset-1.col-md-offset-2
           include posts-template
         //- This is where the user posts will populate
       div.space.col-xs-12.backgroundPrimary-color.paddingVertical-xl

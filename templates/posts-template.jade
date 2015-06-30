@@ -9,7 +9,8 @@ for post in user.posts
           i.fa.fa-flag-o.fa.fa-2x.paddingRight-sm.col-xs-5
           i.fa.fa-bomb.fa.fa-2x.col-xs-5
     .postImage.col-xs-12
-      img(src=post.pictures)
+      p #{post.picture}
+      img(src=post.picture)
     .postFooter.col-xs-12.paddingTop-sm
       i.fa.fa-bomb.fa.fa-2x.col-xs-2.pull-left
       .postComment.textPrimary-gray.col-xs-8

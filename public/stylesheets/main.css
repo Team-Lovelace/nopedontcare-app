@@ -642,7 +642,6 @@ h5 {
   height: 400px; }
 
 .postContainer {
-  background-color: #ffffff;
   padding: 0px !important; }
 
 .postTop.col-xs-12 {
@@ -650,9 +649,6 @@ h5 {
   background-color: #333333;
   padding-left: 0px;
   padding-right: 0px; }
-
-.postImage.col-xs-12 {
-  height: 250px; }
 
 .postFooter.col-xs-12 {
   height: 50px;

@@ -161,8 +161,8 @@ app.post('/register', function(req, res) {
         }
         var userCompiler = jade.compile(data);
         var html = userCompiler(user);
-        res.send(html);
-        res.status(201);
+        //TO DO: refresh page you make the request from
+        res.render('/userprofile');
       });
     }
   });
@@ -245,7 +245,7 @@ app.post('/nopes', function(req, res) {
     }
     var post = new Post({
       author: user._id,
-      picture: req.locals.pictureSrc,
+      picture: 'https://s3.amazonaws.com/nopes/' + req.locals.pictureSrc,
       caption: req.body.caption,
       pubDate: moment().format()
     });

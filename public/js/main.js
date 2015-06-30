@@ -12,18 +12,20 @@ $(document).ready(function() {
   });
 
 
-  $('#nope-submit').on('click', function(event){
-    var nope = {
-      caption: $('#postContent').val()
-    };
-   $.ajax({
-      method: 'POST',
-      url: 'http://localhost:3000/nopes',
-      data: JSON.stringify(nope),
-      contentType: "application/json; charset=utf-8"
-    }).done(function(response){
-      console.log(response);
-      $('.postContainer').prepend(response);
-    });
-  });
+  // $('#nope-submit').on('click', function(event) {
+  //   debugger;
+  //   var nope = {
+  //     caption: $('#postContent').val(),
+  //     file: $('#file')[0].files[0]
+  //   };
+  //   $.ajax({
+  //     method: 'POST',
+  //     url: 'http://localhost:3000/nopes',
+  //     data: nope,
+  //     contentType: "multipart/form-data",
+  //   }).done(function(response) {
+  //     console.log(response);
+  //     $('.postContainer').prepend(response);
+  //   });
+  // });
 }); //End of document ready
